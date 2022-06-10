@@ -113,10 +113,6 @@ let g:NERDTreeWinSize=38
 let g:NERDTreeGlyphReadOnly = "RO"
 
 " Make adjusing split sizes a bit more friendly
-noremap <silent> <C-Left> :vertical resize +3<CR>
-noremap <silent> <C-Right> :vertical resize -3<CR>
-noremap <silent> <C-Up> :resize +3<CR>
-noremap <silent> <C-Down> :resize -3<CR>
 function! MyResize()
   :resize 40
 endfunction
@@ -131,16 +127,28 @@ nmap <Leader>v :noh<CR>
 nnoremap <Leader>c :Commentary<CR>
 vnoremap <Leader>c :Commentary<CR>
 nnoremap <Leader>f :Prettier<CR>
-nmap <Leader>j :bp<CR>
-nmap <Leader>k :bn<CR>
-nmap <Leader>l :bd<CR>
 nmap <Leader>/ :%s/
+
+let g:tmux_navigator_no_mappings = 1
+" nnoremap <silent> <C-> :TmuxNavigateUp<cr>
+" nnoremap <silent> <C-> :TmuxNavigateDown<cr>
+nnoremap <silent> <C-j> :TmuxNavigateLeft<CR>
+nnoremap <silent> <C-k> :TmuxNavigateRight<CR>
+nnoremap <silent> <C-u> :bp<CR>
+nnoremap <silent> <C-i> :bn<CR>
+nnoremap <silent> <C-y> :bd<CR>
+noremap <silent> <C-m> :vertical resize +3<CR>
+noremap <silent> <C-,> :vertical resize -3<CR>
+noremap <silent> <C-Up> :resize +3<CR>
+noremap <silent> <C-Down> :resize -3<CR>
+
 
 set guioptions-=m  "remove menu bar
 set guioptions-=T  "remove toolbar
 set guioptions-=r  "remove right-hand scroll bar
 set guioptions-=L  "remove left-hand scroll bar
 
+" set guifont=Hack:h15
 
 
 "_________________________________________________________________________________
@@ -204,7 +212,7 @@ nmap <silent> [g <Plug>(coc-diagnostic-prev)
 nmap <silent> ]g <Plug>(coc-diagnostic-next)
 
 " GoTo code navigation.
-nmap <silent> gd <Plug>(coc-definition)
+" nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
