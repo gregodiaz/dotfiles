@@ -9,15 +9,8 @@ set relativenumber
 set sw=2
 set noshowmode
 let g:airline#extensions#whitespace#enabled = 0
-" augroup clearcmdline
-"     autocmd!
-"     function! Echo_Nothing(timer)
-"         echo ''
-"     endfunction
-"     autocmd CmdlineLeave * call timer_start(1000, 'Echo_Nothing')
-" augroup END
 
-call plug#begin('~/.vim/plugged')
+call plug#begin('~/.config/nvim/plugged')
 " Easymotion
 Plug 'easymotion/vim-easymotion'
 Plug 'christoomey/vim-tmux-navigator'
@@ -106,7 +99,7 @@ let g:user_emmet_settings={
 \ }
 
 " Prettier configuracion
-command! -nargs=0 Prettier :CocCommand prettier.formatFile
+    command! -nargs=0 Prettier :CocCommand prettier.formatFile
 
 " configuracion de airline
 let g:airline#extensions#tabline#enabled = 1
@@ -139,20 +132,39 @@ let g:NERDTreeGlyphReadOnly = "RO"
 
 " Make adjusing split sizes a bit more friendly
 function! MyResize()
-  :resize 39
+  :resize 43
 endfunction
 autocmd VimEnter * call MyResize()
 
 " My Shortcuts
 map <Leader>s <Plug>(easymotion-s2)
-nmap <Leader>q :q<CR>
+nmap <Leader>q :q
 nmap <Leader>w :w<CR>
-nmap <Leader>x :x<CR>
+nmap <Leader>x :x
 nmap <Leader>v :noh<CR>
 nnoremap <Leader>c :Commentary<CR>
 vnoremap <Leader>c :Commentary<CR>
 nnoremap <Leader>f :Prettier<CR>
 nmap <Leader>/ :%s/
+nmap <Leader>. :s/
+
+" My Remaps
+inoremap ( ()<Esc>i
+inoremap { {}<Esc>i
+inoremap [ []<Esc>i
+inoremap ' ''<Esc>i
+inoremap " ""<Esc>i
+inoremap ` ``<Esc>i
+inoremap <F4> () => <Esc>a
+inoremap <F5> <Esc>A;
+inoremap <F6> <Esc>bi"<Esc>ea"
+inoremap <F7> () => {}<Esc>6hi
+inoremap <F8> () => {}<Esc>i
+inoremap <F9> < /><Esc>2hi
+inoremap <F10> "": "",<Esc>5hi
+inoremap <F11> : ,<Esc>i
+inoremap <F12> { : }<Esc>2hi
+nnoremap ;; A;<Esc>
 
 let g:tmux_navigator_no_mappings = 1
 " nnoremap <silent> <C-> :TmuxNavigateUp<cr>
