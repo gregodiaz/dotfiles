@@ -49,25 +49,25 @@ Plug 'ap/vim-css-color'
 
 call plug#end()
 
-highlight Normal           guifg=#dfdfdf ctermfg=15   guibg=#282c34 ctermbg=none  cterm=none
-highlight LineNr           guifg=#5b6268 ctermfg=8    guibg=#282c34 ctermbg=none  cterm=none
-highlight CursorLineNr     guifg=#202328 ctermfg=7    guifg=#5b6268 ctermbg=8     cterm=none
-highlight VertSplit        guifg=#1c1f24 ctermfg=0    guifg=#5b6268 ctermbg=8     cterm=none
-highlight Statement        guifg=#98be65 ctermfg=2    guibg=none    ctermbg=none  cterm=none
-highlight Directory        guifg=#51afef ctermfg=4    guibg=none    ctermbg=none  cterm=none
-highlight StatusLine       guifg=#202328 ctermfg=7    guifg=#5b6268 ctermbg=8     cterm=none
-highlight StatusLineNC     guifg=#202328 ctermfg=7    guifg=#5b6268 ctermbg=8     cterm=none
-highlight NERDTreeClosable guifg=#98be65 ctermfg=2
-highlight NERDTreeOpenable guifg=#5b6268 ctermfg=8
-highlight Comment          guifg=#51afef ctermfg=4    guibg=none    ctermbg=none  cterm=italic
-highlight Constant         guifg=#3071db ctermfg=12   guibg=none    ctermbg=none  cterm=none
-highlight Special          guifg=#51afef ctermfg=4    guibg=none    ctermbg=none  cterm=none
-highlight Identifier       guifg=#5699af ctermfg=6    guibg=none    ctermbg=none  cterm=none
-highlight PreProc          guifg=#c678dd ctermfg=5    guibg=none    ctermbg=none  cterm=none
-highlight String           guifg=#3071db ctermfg=12   guibg=none    ctermbg=none  cterm=none
-highlight Number           guifg=#ff6c6b ctermfg=1    guibg=none    ctermbg=none  cterm=none
-highlight Function         guifg=#ff6c6b ctermfg=1    guibg=none    ctermbg=none  cterm=none
-highlight Visual           guifg=#dfdfdf ctermfg=1    guibg=#1c1f24 ctermbg=none  cterm=none
+" highlight Normal           guifg=#dfdfdf ctermfg=15   guibg=#282c34 ctermbg=none  cterm=none
+" highlight LineNr           guifg=#5b6268 ctermfg=8    guibg=#282c34 ctermbg=none  cterm=none
+" highlight CursorLineNr     guifg=#202328 ctermfg=7    guifg=#5b6268 ctermbg=8     cterm=none
+" highlight VertSplit        guifg=#1c1f24 ctermfg=0    guifg=#5b6268 ctermbg=8     cterm=none
+" highlight Statement        guifg=#98be65 ctermfg=2    guibg=none    ctermbg=none  cterm=none
+" highlight Directory        guifg=#51afef ctermfg=4    guibg=none    ctermbg=none  cterm=none
+" highlight StatusLine       guifg=#202328 ctermfg=7    guifg=#5b6268 ctermbg=8     cterm=none
+" highlight StatusLineNC     guifg=#202328 ctermfg=7    guifg=#5b6268 ctermbg=8     cterm=none
+" highlight NERDTreeClosable guifg=#98be65 ctermfg=2
+" highlight NERDTreeOpenable guifg=#5b6268 ctermfg=8
+" highlight Comment          guifg=#51afef ctermfg=4    guibg=none    ctermbg=none  cterm=italic
+" highlight Constant         guifg=#3071db ctermfg=12   guibg=none    ctermbg=none  cterm=none
+" highlight Special          guifg=#51afef ctermfg=4    guibg=none    ctermbg=none  cterm=none
+" highlight Identifier       guifg=#5699af ctermfg=6    guibg=none    ctermbg=none  cterm=none
+" highlight PreProc          guifg=#c678dd ctermfg=5    guibg=none    ctermbg=none  cterm=none
+" highlight String           guifg=#3071db ctermfg=12   guibg=none    ctermbg=none  cterm=none
+" highlight Number           guifg=#ff6c6b ctermfg=1    guibg=none    ctermbg=none  cterm=none
+" highlight Function         guifg=#ff6c6b ctermfg=1    guibg=none    ctermbg=none  cterm=none
+" highlight Visual           guifg=#dfdfdf ctermfg=1    guibg=#1c1f24 ctermbg=none  cterm=none
 
 " set guifont=Hack:h15
 " set guifont=Meslo\ LG\ M:h15
@@ -85,9 +85,6 @@ colorscheme gruvbox-material
 " lua << EOF
 " require'lspconfig'.tsserver.setup{on_attach=require'completion'.on_attach}
 " EOF
-
-" snippets configuracion
-let g:UtilSnipsExpandTrigger="<tab>"
 
 " EMMET configuracion
 let g:user_emmet_mode='n'
@@ -115,6 +112,7 @@ let g:airline_right_sep = ''
 let g:airline_right_alt_sep = ''
 let g:airline_symbols.branch = ''
 let g:airline_symbols.readonly = ''
+" let g:airline_theme='gruvbox'
 let g:airline_theme='bubblegum'
 
 " NERDTREE Configuracion
@@ -147,6 +145,16 @@ vnoremap <Leader>c :Commentary<CR>
 nnoremap <Leader>f :Prettier<CR>
 nmap <Leader>/ :%s/
 nmap <Leader>. :s/
+nnoremap <Leader><TAB> gd
+
+" My snippets configuracion
+let g:UtilSnipsExpandTrigger="<tab>"
+let g:UltiSnipsJumpForwardTrigger="<tab>"
+let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
+let g:ycm_key_list_select_completion   = ["<C-j>", "<C-n>", "<Down>"]
+let g:ycm_key_list_previous_completion = ["<C-k>", "<C-p>", "<Up>"]
+let g:UltiSnipsEditSplit="vertical"
+let g:UltiSnipsListSnippets="<c-t>"
 
 " My Remaps
 inoremap ( ()<Esc>i
@@ -155,16 +163,9 @@ inoremap [ []<Esc>i
 inoremap ' ''<Esc>i
 inoremap " ""<Esc>i
 inoremap ` ``<Esc>i
-inoremap <F4> () => <Esc>a
-inoremap <F5> <Esc>A;
-inoremap <F6> <Esc>bi"<Esc>ea"
-inoremap <F7> () => {}<Esc>6hi
-inoremap <F8> () => {}<Esc>i
-inoremap <F9> < /><Esc>2hi
-inoremap <F10> "": "",<Esc>5hi
-inoremap <F11> : ,<Esc>i
-inoremap <F12> { : }<Esc>2hi
 nnoremap ;; A;<Esc>
+nnoremap "" <Esc>bi"<Esc>ea"
+nnoremap ,. bi<<Esc>ea /><Esc>2h
 
 let g:tmux_navigator_no_mappings = 1
 " nnoremap <silent> <C-> :TmuxNavigateUp<cr>
