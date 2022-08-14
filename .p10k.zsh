@@ -98,7 +98,7 @@
     todo                    # todo items (https://github.com/todotxt/todo.txt-cli)
     timewarrior             # timewarrior tracking status (https://timewarrior.net/)
     taskwarrior             # taskwarrior task count (https://taskwarrior.org/)
-    time                    # current time
+    # time                    # current time
     # ip                    # ip address and bandwidth usage for a specified network interface
     # public_ip             # public IP address
     # proxy                 # system-wide http/https/ftp proxy
@@ -224,8 +224,8 @@
   # Replace removed segment suffixes with this symbol.
   typeset -g POWERLEVEL9K_SHORTEN_DELIMITER=
   # Color of the shortened directory segments.
-  # typeset -g POWERLEVEL9K_DIR_SHORTENED_FOREGROUND=0
-  typeset -g POWERLEVEL9K_DIR_SHORTENED_FOREGROUND=250
+  typeset -g POWERLEVEL9K_DIR_SHORTENED_FOREGROUND=0
+  # typeset -g POWERLEVEL9K_DIR_SHORTENED_FOREGROUND=250
   # Color of the anchor directory segments. Anchor segments are never shortened. The first
   # segment is always an anchor.
   typeset -g POWERLEVEL9K_DIR_ANCHOR_FOREGROUND=0
@@ -522,7 +522,7 @@
   # it will signify error by turning red.
   typeset -g POWERLEVEL9K_STATUS_ERROR=true
   typeset -g POWERLEVEL9K_STATUS_ERROR_VISUAL_IDENTIFIER_EXPANSION='✘'
-  typeset -g POWERLEVEL9K_STATUS_ERROR_FOREGROUND=0
+  typeset -g POWERLEVEL9K_STATUS_ERROR_FOREGROUND=7
   typeset -g POWERLEVEL9K_STATUS_ERROR_BACKGROUND=1
 
   # Status when the last command was terminated by a signal.

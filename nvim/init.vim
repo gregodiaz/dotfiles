@@ -49,30 +49,6 @@ Plug 'ap/vim-css-color'
 
 call plug#end()
 
-" highlight Normal           guifg=#dfdfdf ctermfg=15   guibg=#282c34 ctermbg=none  cterm=none
-" highlight LineNr           guifg=#5b6268 ctermfg=8    guibg=#282c34 ctermbg=none  cterm=none
-" highlight CursorLineNr     guifg=#202328 ctermfg=7    guifg=#5b6268 ctermbg=8     cterm=none
-" highlight VertSplit        guifg=#1c1f24 ctermfg=0    guifg=#5b6268 ctermbg=8     cterm=none
-" highlight Statement        guifg=#98be65 ctermfg=2    guibg=none    ctermbg=none  cterm=none
-" highlight Directory        guifg=#51afef ctermfg=4    guibg=none    ctermbg=none  cterm=none
-" highlight StatusLine       guifg=#202328 ctermfg=7    guifg=#5b6268 ctermbg=8     cterm=none
-" highlight StatusLineNC     guifg=#202328 ctermfg=7    guifg=#5b6268 ctermbg=8     cterm=none
-" highlight NERDTreeClosable guifg=#98be65 ctermfg=2
-" highlight NERDTreeOpenable guifg=#5b6268 ctermfg=8
-" highlight Comment          guifg=#51afef ctermfg=4    guibg=none    ctermbg=none  cterm=italic
-" highlight Constant         guifg=#3071db ctermfg=12   guibg=none    ctermbg=none  cterm=none
-" highlight Special          guifg=#51afef ctermfg=4    guibg=none    ctermbg=none  cterm=none
-" highlight Identifier       guifg=#5699af ctermfg=6    guibg=none    ctermbg=none  cterm=none
-" highlight PreProc          guifg=#c678dd ctermfg=5    guibg=none    ctermbg=none  cterm=none
-" highlight String           guifg=#3071db ctermfg=12   guibg=none    ctermbg=none  cterm=none
-" highlight Number           guifg=#ff6c6b ctermfg=1    guibg=none    ctermbg=none  cterm=none
-" highlight Function         guifg=#ff6c6b ctermfg=1    guibg=none    ctermbg=none  cterm=none
-" highlight Visual           guifg=#dfdfdf ctermfg=1    guibg=#1c1f24 ctermbg=none  cterm=none
-
-" set guifont=Hack:h15
-" set guifont=Meslo\ LG\ M:h15
-set guifont=Meslo\ LG\ M\ for\ Powerline:h15
-
 " MapLeader
 let mapleader=" "
 
@@ -80,11 +56,6 @@ let mapleader=" "
 set background=dark
 let g:gruvbox_material_background='medium'
 colorscheme gruvbox-material
-
-" LSP configuracion
-" lua << EOF
-" require'lspconfig'.tsserver.setup{on_attach=require'completion'.on_attach}
-" EOF
 
 " EMMET configuracion
 let g:user_emmet_mode='n'
@@ -101,7 +72,7 @@ let g:user_emmet_settings={
 " configuracion de airline
 let g:airline#extensions#tabline#enabled = 1
 let g:airline_powerline_fonts = 1
-let g:airline_section_a = airline#section#create(['mode',' ','branch'])
+" let g:airline_section_a = airline#section#create(['mode',' ','branch'])
 "let g:airline_section_c = airline#section#create(['filetype'])
 "let g:airline_section_x = airline#section#create(['%P'])
 "let g:airline_section_y = airline#section#create(['%B'])
@@ -117,8 +88,8 @@ let g:airline_theme='bubblegum'
 
 " NERDTREE Configuracion
 map <C-n> :NERDTreeToggle<CR>
-" let g:NERDTreeDirArrowExpandable = '►'
-" let g:NERDTreeDirArrowCollapsible = '▼'
+let g:NERDTreeDirArrowExpandable = ''
+let g:NERDTreeDirArrowCollapsible = ' '
 let NERDTreeShowLineNumbers=1
 let NERDTreeAutoDeleteBuffer = 1
 let NERDTreeDirArrows = 1
@@ -151,8 +122,8 @@ nnoremap <Leader><TAB> gd
 let g:UtilSnipsExpandTrigger="<tab>"
 let g:UltiSnipsJumpForwardTrigger="<tab>"
 let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
-let g:ycm_key_list_select_completion   = ["<C-j>", "<C-n>", "<Down>"]
-let g:ycm_key_list_previous_completion = ["<C-k>", "<C-p>", "<Up>"]
+" let g:ycm_key_list_select_completion   = ["<C-j>", "<C-n>", "<Down>"]
+" let g:ycm_key_list_previous_completion = ["<C-k>", "<C-p>", "<Up>"]
 let g:UltiSnipsEditSplit="vertical"
 let g:UltiSnipsListSnippets="<c-t>"
 
@@ -163,9 +134,23 @@ inoremap [ []<Esc>i
 inoremap ' ''<Esc>i
 inoremap " ""<Esc>i
 inoremap ` ``<Esc>i
-nnoremap ;; A;<Esc>
+inoremap <F11> ()<Esc>i
+inoremap <F7> {}<Esc>i
+inoremap <F3> []<Esc>i
+inoremap <F12> )
+inoremap <F8> }
+inoremap <F4> ]
+
 nnoremap "" <Esc>bi"<Esc>ea"
+nnoremap ;; A;<Esc>
 nnoremap ,. bi<<Esc>ea /><Esc>2h
+
+vnoremap ( c()<Esc>P
+vnoremap { c{}<Esc>P
+vnoremap [ c[]<Esc>P
+vnoremap ' c''<Esc>P
+vnoremap " c""<Esc>P
+vnoremap ` c``<Esc>P
 
 let g:tmux_navigator_no_mappings = 1
 " nnoremap <silent> <C-> :TmuxNavigateUp<cr>
@@ -241,6 +226,8 @@ endif
 " format on enter, <cr> could be remapped by other vim plugin
 inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm()
                               \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
+
+inoremap <expr> <cr> coc#pum#visible() ? coc#_select_confirm() : "\<CR>"
 
 " Use `[g` and `]g` to navigate diagnostics
 " Use `:CocDiagnostics` to get all diagnostics of current buffer in location list.

@@ -16,8 +16,8 @@ export ZSH="$HOME/.oh-my-zsh"
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
 # ZSH_THEME="agnoster"
-ZSH_THEME="powerlevel10k/powerlevel10k"
-# 'p105 configure' to reset de configure
+# ZSH_THEME="powerlevel10k/powerlevel10k"
+# 'p10k configure' to reset de configure
 SOLARIZED_THEME="dark"
 
 # + -  * /
@@ -149,3 +149,4 @@ export NVM_DIR="$HOME/.nvm"
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+source ~/powerlevel10k/powerlevel10k.zsh-theme

@@ -1,5 +1,5 @@
 ### pre-setup
-curl > git > node > zsh > nvim > awesome
+[curl](https://linuxhint.com/install_curl_ubuntu/) > [git](https://www.digitalocean.com/community/tutorials/how-to-install-git-on-ubuntu-20-04-es) > [node](https://www.freecodecamp.org/news/how-to-install-node-js-on-ubuntu-and-update-npm-to-the-latest-version/) > zsh > [oh my zsh](https://ohmyz.sh/) > [nvim](https://github.com/neovim/neovim/wiki/Installing-Neovim) > [awesome]()
 ```bash
 sudo apt install font-manager
 ```
@@ -24,6 +24,8 @@ p10k configure
 # Awesome WM
 ```bash
 sudo apt-get install awesome
+```
+```bash
 sudo apt install compton nitrogen dmenu autorandr
 ```
 cp awesome in ~/.config
@@ -32,7 +34,7 @@ run
 xrandr --output DP-1 --mode 1366x768
 ```
 ```bash
-xrandr --output DP-1 --left-to eDC1
+xrandr --output DP-1 --left-of eDP-1
 ```
 ```bash
 autorandr -s greg
@@ -46,18 +48,11 @@ autorandr greg
 
 # vim
 cp nvim in ~/.config
-```bash
-sudo apt install neovim
-sudo apt install python3-neovim
-```
-install Plug
-```bash
-sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs \
-       https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
-```
 run in vim
 ```bash
 :PlugInstall
+```
+```bash
 :CocInstall coc-prettier
 ```
 

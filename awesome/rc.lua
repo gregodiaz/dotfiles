@@ -847,7 +847,7 @@ client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_n
 
 awful.util.spawn("compton")
 awful.spawn.with_shell("nitrogen --restore")
-awful.spawn.with_shell("autorandr greg2")
+awful.spawn.with_shell("autorandr greg")
 awful.spawn.with_shell("picom --config  $HOME/.config/picom/picom.conf")
 awful.spawn.with_shell("nm-applet")
 awful.spawn.with_shell("volumeicon")
