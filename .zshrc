@@ -6,7 +6,7 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
 fi
 
 # If you come from bash you might have to change your $PATH.
-export PATH=$HOME/bin:/usr/local/bin:$PATH
+# export PATH=$HOME/bin:/usr/local/bin:$HOME/.composer/vendor/bin:$PATH
 
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
@@ -25,29 +25,6 @@ bindkey -s "^[Ok" "+"
 bindkey -s "^[Om" "-"
 bindkey -s "^[Oj" "*"
 bindkey -s "^[Oo" "/"
-
-# addd
-x-yank() {
-  zle copy-region-as-kill
-  print -rn -- $CUTBUFFER | pbcopy
-}
-zle -N x-yank
-
-x-cut() {
-  zle kill-region
-  print -rn -- $CUTBUFFER | pbcopy
-}
-zle -N x-cut
-
-x-paste() {
-  CUTBUFFER=$(pbpaste)
-  zle yank
-}
-zle -N x-paste
-
-bindkey -M vicmd "x" x-cut
-bindkey -M vicmd "c" x-yank
-bindkey -M vicmd "v" x-paste
 
  # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
@@ -136,6 +113,24 @@ source $ZSH/oh-my-zsh.sh
 # For a full list of active aliases, run `alias`.
 #
 # Example aliases
+alias cl="clear"
+# alias vi="nvim"
+alias vi="neovide --multigrid --notabs --maximized"
+alias pa="php artisan"
+alias wpp="whatsdesk"
+
+alias gcmm="git commit -m"
+alias gcmma="git commit -am"
+alias gcam="git commit --amend"
+alias gcko="git checkout"
+alias gckom="git checkout main"
+alias gpsh="git push"
+alias gpll="git pull"
+# alias gpllr="git pull $(pwd | awk -F/ '{print $NF}') $(git_current_branch)"
+alias gsth="git stash"
+alias gshw="git show"
+alias grp="git remote prune "
+alias gsl="git log --graph --abbrev-commit --decorate --date=relative --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- <%an>%C(auto)%d%Creset' --all"
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
@@ -150,3 +145,7 @@ export NVM_DIR="$HOME/.nvm"
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 source ~/powerlevel10k/powerlevel10k.zsh-theme
+
+# export PATH="$HOME/.composer/vendor/bin:$PATH"
+# If you come from bash you might have to change your $PATH.
+export PATH=$HOME/bin:/usr/local/bin:$HOME/.config/composer/vendor/bin:$PATH
