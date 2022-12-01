@@ -33,5 +33,12 @@ require("rest-nvim").setup({
     yank_dry_run = true,
 })
 
-vim.keymap.set('n', '<leader>rm', require "rest-nvim".run, { remap = false })
-vim.keymap.set('n', '<leader>rl', require "rest-nvim".last, { remap = false })
+vim.api.nvim_create_autocmd('FileType', {
+    pattern = 'http',
+    callback = function()
+        local buff = tonumber(vim.fn.expand('<abuf>'), 10)
+        vim.keymap.set('n', '<leader>rm', require "rest-nvim".run, { remap = false, buffer = buff })
+        vim.keymap.set('n', '<leader>rl', require "rest-nvim".last, { remap = false, buffer = buff })
+        vim.keymap.set('n', '<leader>rp', function() require "rest-nvim".run(true) end, { remap = false, buffer = buff })
+    end
+})

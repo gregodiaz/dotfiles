@@ -15,11 +15,6 @@ local function jump_back_to_original_buffer(original_buffer) --{{{
 end --}}}
 
 -- SECTION: EasyMotion
--- NOTE: 2-chars
-vim.keymap.set("n", "<Leader>ss", function()
-    vim.cmd([[:HopChar2]])
-end, opts)
-
 -- NOTE: Pattern
 vim.keymap.set("n", "<Leader>sd", function()
     vim.cmd([[:HopWord ]])
@@ -28,6 +23,11 @@ end, opts)
 -- NOTE: Word
 vim.keymap.set("n", "<Leader>sf", function()
     vim.cmd([[:HopPattern]])
+end, opts)
+
+-- NOTE: 2-chars
+vim.keymap.set("n", "<Leader>sg", function()
+    vim.cmd([[:HopChar2]])
 end, opts)
 
 -- SECTION: Hyper Yank
@@ -169,7 +169,8 @@ end, opts)
 vim.keymap.set("n", "<Leader>vc", function()
     require("tsht").nodes()
     vim.schedule(function()
-        virunm.cmd([[normal! c]])
+        vim.cmd([[normal! c]])
+        -- virunm.cmd([[normal! c]])
         vim.cmd([[startinsert]])
     end)
 end, opts)

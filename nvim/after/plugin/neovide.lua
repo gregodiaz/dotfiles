@@ -9,7 +9,7 @@ vim.o.winblend = 43
 vim.o.pumblend = 100
 
 -- GUI Font
-vim.g.gui_font_default_size = 13
+vim.g.gui_font_default_size = 12
 vim.g.gui_font_size = vim.g.gui_font_default_size
 vim.g.gui_font_face = "Operator Mono SSm Lig Book"
 -- vim.g.gui_font_face = "Operator Mono SSm Lig Medium"

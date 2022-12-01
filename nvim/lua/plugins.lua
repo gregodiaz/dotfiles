@@ -15,7 +15,16 @@ return require("packer").startup(function(use)
         "nvim-telescope/telescope.nvim",
         requires = { { "nvim-lua/plenary.nvim" } }
     }
-    use "scrooloose/nerdtree"
+
+    use {
+        "nvim-neo-tree/neo-tree.nvim",
+        branch = "v2.x",
+        requires = {
+            "nvim-lua/plenary.nvim",
+            "kyazdani42/nvim-web-devicons", -- not strictly required, but recommended
+            "MunifTanjim/nui.nvim",
+        }
+    }
 
     use {
         "nvim-treesitter/nvim-treesitter",
@@ -34,7 +43,6 @@ return require("packer").startup(function(use)
             "hrsh7th/cmp-nvim-lsp",
             "hrsh7th/cmp-buffer",
             "hrsh7th/cmp-path",
-            "hrsh7th/cmp-cmdline",
             "hrsh7th/cmp-cmdline",
         }
     }
@@ -82,7 +90,9 @@ return require("packer").startup(function(use)
     use "ziontee113/syntax-tree-surfer"
 
     use({ "L3MON4D3/LuaSnip",
-        -- tag = "v<CurrentMajor>.*"
+        tag = "v1.1.0",
+        -- tag = "v<CurrentMajor>.*",
+        after = "nvim-cmp",
     })
 
     use 'ap/vim-css-color'
@@ -92,5 +102,26 @@ return require("packer").startup(function(use)
         "NTBBloodbath/rest.nvim",
         requires = { "nvim-lua/plenary.nvim" },
     }
+
+    use {
+        "ThePrimeagen/harpoon",
+        requires = {
+            "nvim-lua/plenary.nvim",
+            "nvim-lua/popup.nvim",
+        },
+    }
+
+    use { "nvim-telescope/telescope-file-browser.nvim" }
+
+    use 'dominikduda/vim_current_word'
+
+    use 'praem90/nvim-phpcsf'
+
+    use 'preservim/nerdtree'
+
+    use 'akinsho/toggleterm.nvim'
+
+    -- use { 'fgheng/winbar.nvim' }
+
 end
 )

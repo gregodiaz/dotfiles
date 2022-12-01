@@ -115,9 +115,10 @@ source $ZSH/oh-my-zsh.sh
 # Example aliases
 alias cl="clear"
 # alias vi="nvim"
-alias vi="neovide --multigrid --notabs --maximized"
+alias vi="neovide --multigrid --maximized"
 alias pa="php artisan"
 alias wpp="whatsdesk"
+alias sail="[ -f sail ] && sh sail || sh vendor/bin/sail"
 
 alias gcmm="git commit -m"
 alias gcmma="git commit -am"
@@ -146,6 +147,5 @@ export NVM_DIR="$HOME/.nvm"
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 source ~/powerlevel10k/powerlevel10k.zsh-theme
 
-# export PATH="$HOME/.composer/vendor/bin:$PATH"
 # If you come from bash you might have to change your $PATH.
 export PATH=$HOME/bin:/usr/local/bin:$HOME/.config/composer/vendor/bin:$PATH

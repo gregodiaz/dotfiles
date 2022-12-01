@@ -7,7 +7,6 @@ end
 -- Leader
 map('n', '<Leader>w', ':w<CR>')
 map('n', '<Leader>v', ':noh<CR>')
-map('n', '<Leader>te', ':term')
 map('n', '<Leader>q', ':q', { silent = false })
 map('n', '<Leader>x', ':x', { silent = false })
 map('n', '<Leader>e', ':e ', { silent = false })
@@ -15,6 +14,7 @@ map('n', '<Leader>/', ':%s/', { silent = false })
 map('n', '<Leader>.', ':s/', { silent = false })
 map('n', '<Leader>gi', ':G ', { silent = false })
 map('n', '<leader>ar', ':Artisan<CR>', { silent = false })
+map('n', '<leader>af', ':Sail ', { silent = false })
 
 map({ 'n', 'v' }, '<Leader>c', ':Commentary<CR>')
 
@@ -24,14 +24,19 @@ map('n', 'N', 'Nzzzv')
 map('v', '>', '>gv')
 map('v', '<', '<gv')
 map('v', '<Leader>o', ":\'<,\'>sort<CR>")
+map('v', '<Leader>jq', ":\'<,\'>!jq<CR>")
+map('v', '<Leader><Leader>jq', ":\'<,\'>!jq -c<CR>")
 
 -- Control
+map('n', '<C-n>', ':Neotree toggle<CR>')
 map('n', '<C-j>', ':TmuxNavigateLeft<CR>')
 map('n', '<C-k>', ':TmuxNavigateRight<CR>')
-map('n', '<C-n>', ':NERDTreeToggle<CR>')
-map('n', '<C-u>', ':tabprevious<CR>')
-map('n', '<C-i>', ':tabnext<CR>')
-map('n', '<C-y>', ':tabclose<CR>')
+map('n', '<C-u>', ':bp<CR>')
+map('n', '<C-i>', ':bn<CR>')
+map('n', '<C-y>', ':bdelete<CR>')
+-- map('n', '<C-u>', ':tabprevious<CR>')
+-- map('n', '<C-i>', ':tabnext<CR>')
+-- map('n', '<C-y>', ':tabclose<CR>')
 
 -- Replacement
 -- Normal mode

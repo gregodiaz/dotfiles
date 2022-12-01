@@ -8,11 +8,12 @@ require('telescope').setup {
                 -- actions.which_key shows the mappings for your picker,
                 -- e.g. git_{create, delete, ...}_branch for the git_branches picker
                 ["<C-h>"] = "which_key",
-                ["<CR>"] = "select_tab"
+                -- ["<CR>"] = "select_tab",
             }
         },
         file_ignore_patterns = { "vendor" }
     },
+    hidden = true,
     pickers = {
         -- Default configuration for builtin pickers goes here:
         -- picker_name = {
@@ -35,7 +36,9 @@ require('telescope').setup {
 vim.keymap.set('n', '<leader>po', require "telescope.builtin".find_files, { remap = false })
 vim.keymap.set('n', '<leader>pp', require "telescope.builtin".git_files, { remap = false })
 vim.keymap.set('n', '<leader>gs', require "telescope.builtin".git_status, { remap = false })
+vim.keymap.set('n', '<leader>gc', require "telescope.builtin".git_commits, { remap = false })
 
 vim.keymap.set('n', '<leader>tb', require "telescope.builtin".git_branches, { remap = false })
 vim.keymap.set('n', '<leader>tt', require "telescope.builtin".buffers, { remap = false })
+vim.keymap.set('n', '<leader>tg', require "telescope.builtin".live_grep, { remap = false })
 vim.keymap.set('n', '<leader>tg', require "telescope.builtin".live_grep, { remap = false })

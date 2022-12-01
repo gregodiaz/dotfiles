@@ -75,8 +75,10 @@ time([[try_loadstring definition]], false)
 time([[Defining packer_plugins]], true)
 _G.packer_plugins = {
   LuaSnip = {
+    load_after = {},
     loaded = true,
-    path = "/home/greg/.local/share/nvim/site/pack/packer/start/LuaSnip",
+    needs_bufread = true,
+    path = "/home/greg/.local/share/nvim/site/pack/packer/opt/LuaSnip",
     url = "https://github.com/L3MON4D3/LuaSnip"
   },
   ["cmp-buffer"] = {
@@ -114,6 +116,11 @@ _G.packer_plugins = {
     path = "/home/greg/.local/share/nvim/site/pack/packer/start/gruvbox.nvim",
     url = "https://github.com/ellisonleao/gruvbox.nvim"
   },
+  harpoon = {
+    loaded = true,
+    path = "/home/greg/.local/share/nvim/site/pack/packer/start/harpoon",
+    url = "https://github.com/ThePrimeagen/harpoon"
+  },
   ["hop.nvim"] = {
     config = { "\27LJ\2\n\v\0\0\1\0\0\0\1K\0\1\0\0" },
     loaded = true,
@@ -125,10 +132,20 @@ _G.packer_plugins = {
     path = "/home/greg/.local/share/nvim/site/pack/packer/start/laravel.nvim",
     url = "https://github.com/adalessa/laravel.nvim"
   },
+  ["neo-tree.nvim"] = {
+    loaded = true,
+    path = "/home/greg/.local/share/nvim/site/pack/packer/start/neo-tree.nvim",
+    url = "https://github.com/nvim-neo-tree/neo-tree.nvim"
+  },
   nerdtree = {
     loaded = true,
     path = "/home/greg/.local/share/nvim/site/pack/packer/start/nerdtree",
-    url = "https://github.com/scrooloose/nerdtree"
+    url = "https://github.com/preservim/nerdtree"
+  },
+  ["nui.nvim"] = {
+    loaded = true,
+    path = "/home/greg/.local/share/nvim/site/pack/packer/start/nui.nvim",
+    url = "https://github.com/MunifTanjim/nui.nvim"
   },
   ["nvim-cmp"] = {
     loaded = true,
@@ -149,6 +166,11 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/greg/.local/share/nvim/site/pack/packer/start/nvim-notify",
     url = "https://github.com/rcarriga/nvim-notify"
+  },
+  ["nvim-phpcsf"] = {
+    loaded = true,
+    path = "/home/greg/.local/share/nvim/site/pack/packer/start/nvim-phpcsf",
+    url = "https://github.com/praem90/nvim-phpcsf"
   },
   ["nvim-treehopper"] = {
     loaded = true,
@@ -180,6 +202,11 @@ _G.packer_plugins = {
     path = "/home/greg/.local/share/nvim/site/pack/packer/start/plenary.nvim",
     url = "https://github.com/nvim-lua/plenary.nvim"
   },
+  ["popup.nvim"] = {
+    loaded = true,
+    path = "/home/greg/.local/share/nvim/site/pack/packer/start/popup.nvim",
+    url = "https://github.com/nvim-lua/popup.nvim"
+  },
   ["rest.nvim"] = {
     loaded = true,
     path = "/home/greg/.local/share/nvim/site/pack/packer/start/rest.nvim",
@@ -190,10 +217,20 @@ _G.packer_plugins = {
     path = "/home/greg/.local/share/nvim/site/pack/packer/start/syntax-tree-surfer",
     url = "https://github.com/ziontee113/syntax-tree-surfer"
   },
+  ["telescope-file-browser.nvim"] = {
+    loaded = true,
+    path = "/home/greg/.local/share/nvim/site/pack/packer/start/telescope-file-browser.nvim",
+    url = "https://github.com/nvim-telescope/telescope-file-browser.nvim"
+  },
   ["telescope.nvim"] = {
     loaded = true,
     path = "/home/greg/.local/share/nvim/site/pack/packer/start/telescope.nvim",
     url = "https://github.com/nvim-telescope/telescope.nvim"
+  },
+  ["toggleterm.nvim"] = {
+    loaded = true,
+    path = "/home/greg/.local/share/nvim/site/pack/packer/start/toggleterm.nvim",
+    url = "https://github.com/akinsho/toggleterm.nvim"
   },
   ["vim-airline"] = {
     loaded = true,
@@ -239,6 +276,11 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/greg/.local/share/nvim/site/pack/packer/start/vim-tmux-navigator",
     url = "https://github.com/christoomey/vim-tmux-navigator"
+  },
+  vim_current_word = {
+    loaded = true,
+    path = "/home/greg/.local/share/nvim/site/pack/packer/start/vim_current_word",
+    url = "https://github.com/dominikduda/vim_current_word"
   }
 }
 
@@ -247,6 +289,11 @@ time([[Defining packer_plugins]], false)
 time([[Config for hop.nvim]], true)
 try_loadstring("\27LJ\2\n\v\0\0\1\0\0\0\1K\0\1\0\0", "config", "hop.nvim")
 time([[Config for hop.nvim]], false)
+-- Load plugins in order defined by `after`
+time([[Sequenced loading]], true)
+vim.cmd [[ packadd nvim-cmp ]]
+vim.cmd [[ packadd LuaSnip ]]
+time([[Sequenced loading]], false)
 
 _G._packer.inside_compile = false
 if _G._packer.needs_bufread == true then

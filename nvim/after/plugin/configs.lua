@@ -1,5 +1,5 @@
 -- Theme
-vim.opt.guifont = { "OperatorMono Nerd Font", "h14" }
+-- vim.opt.guifont = { "OperatorMono Nerd Font", "h14" }
 
 vim.o.background = "dark"
 vim.cmd([[colorscheme gruvbox]])
@@ -8,8 +8,6 @@ vim.cmd([[colorscheme gruvbox]])
 vim.g.tmux_navigator_no_mappings = 1
 -- " nnoremap <silent> <C-> :TmuxNavigateUp<cr>
 -- " nnoremap <silent> <C-> :TmuxNavigateDown<cr>
--- nnoremap <silent> <C-j> :TmuxNavigateLeft<CR>
--- nnoremap <silent> <C-k> :TmuxNavigateRight<CR>
 -- nnoremap <silent> <C-u> :bp<CR>
 -- nnoremap <silent> <C-i> :bn<CR>
 -- nnoremap <silent> <C-y> :bd<CR>
