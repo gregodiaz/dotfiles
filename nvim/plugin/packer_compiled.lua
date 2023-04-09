@@ -74,6 +74,11 @@ end
 time([[try_loadstring definition]], false)
 time([[Defining packer_plugins]], true)
 _G.packer_plugins = {
+  ["ChatGPT.nvim"] = {
+    loaded = true,
+    path = "/home/greg/.local/share/nvim/site/pack/packer/start/ChatGPT.nvim",
+    url = "https://github.com/jackMort/ChatGPT.nvim"
+  },
   LuaSnip = {
     load_after = {},
     loaded = true,
@@ -101,6 +106,21 @@ _G.packer_plugins = {
     path = "/home/greg/.local/share/nvim/site/pack/packer/start/cmp-path",
     url = "https://github.com/hrsh7th/cmp-path"
   },
+  ["copilot.vim"] = {
+    loaded = true,
+    path = "/home/greg/.local/share/nvim/site/pack/packer/start/copilot.vim",
+    url = "https://github.com/github/copilot.vim"
+  },
+  ["css.vim"] = {
+    loaded = true,
+    path = "/home/greg/.local/share/nvim/site/pack/packer/start/css.vim",
+    url = "https://github.com/JulesWang/css.vim"
+  },
+  ["dressing.nvim"] = {
+    loaded = true,
+    path = "/home/greg/.local/share/nvim/site/pack/packer/start/dressing.nvim",
+    url = "https://github.com/stevearc/dressing.nvim"
+  },
   ["emmet-vim"] = {
     loaded = true,
     path = "/home/greg/.local/share/nvim/site/pack/packer/start/emmet-vim",
@@ -127,10 +147,35 @@ _G.packer_plugins = {
     path = "/home/greg/.local/share/nvim/site/pack/packer/start/hop.nvim",
     url = "https://github.com/phaazon/hop.nvim"
   },
+  ["hydra.nvim"] = {
+    loaded = true,
+    path = "/home/greg/.local/share/nvim/site/pack/packer/start/hydra.nvim",
+    url = "https://github.com/anuvyklack/hydra.nvim"
+  },
+  ["indent-blankline.nvim"] = {
+    loaded = true,
+    path = "/home/greg/.local/share/nvim/site/pack/packer/start/indent-blankline.nvim",
+    url = "https://github.com/lukas-reineke/indent-blankline.nvim"
+  },
+  ["iron.nvim"] = {
+    loaded = true,
+    path = "/home/greg/.local/share/nvim/site/pack/packer/start/iron.nvim",
+    url = "https://github.com/hkupty/iron.nvim"
+  },
   ["laravel.nvim"] = {
     loaded = true,
     path = "/home/greg/.local/share/nvim/site/pack/packer/start/laravel.nvim",
     url = "https://github.com/adalessa/laravel.nvim"
+  },
+  ["lsp-status.nvim"] = {
+    loaded = true,
+    path = "/home/greg/.local/share/nvim/site/pack/packer/start/lsp-status.nvim",
+    url = "https://github.com/nvim-lua/lsp-status.nvim"
+  },
+  ["lspkind.nvim"] = {
+    loaded = true,
+    path = "/home/greg/.local/share/nvim/site/pack/packer/start/lspkind.nvim",
+    url = "https://github.com/onsails/lspkind.nvim"
   },
   ["neo-tree.nvim"] = {
     loaded = true,
@@ -146,6 +191,16 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/greg/.local/share/nvim/site/pack/packer/start/nui.nvim",
     url = "https://github.com/MunifTanjim/nui.nvim"
+  },
+  ["null-ls.nvim"] = {
+    loaded = true,
+    path = "/home/greg/.local/share/nvim/site/pack/packer/start/null-ls.nvim",
+    url = "https://github.com/jose-elias-alvarez/null-ls.nvim"
+  },
+  ["nvim-autopairs"] = {
+    loaded = true,
+    path = "/home/greg/.local/share/nvim/site/pack/packer/start/nvim-autopairs",
+    url = "https://github.com/windwp/nvim-autopairs"
   },
   ["nvim-cmp"] = {
     loaded = true,
@@ -207,10 +262,20 @@ _G.packer_plugins = {
     path = "/home/greg/.local/share/nvim/site/pack/packer/start/popup.nvim",
     url = "https://github.com/nvim-lua/popup.nvim"
   },
+  ["prettier.nvim"] = {
+    loaded = true,
+    path = "/home/greg/.local/share/nvim/site/pack/packer/start/prettier.nvim",
+    url = "https://github.com/MunifTanjim/prettier.nvim"
+  },
   ["rest.nvim"] = {
     loaded = true,
     path = "/home/greg/.local/share/nvim/site/pack/packer/start/rest.nvim",
     url = "https://github.com/NTBBloodbath/rest.nvim"
+  },
+  ["scss-syntax.vim"] = {
+    loaded = true,
+    path = "/home/greg/.local/share/nvim/site/pack/packer/start/scss-syntax.vim",
+    url = "https://github.com/cakebaker/scss-syntax.vim"
   },
   ["syntax-tree-surfer"] = {
     loaded = true,
@@ -227,10 +292,20 @@ _G.packer_plugins = {
     path = "/home/greg/.local/share/nvim/site/pack/packer/start/telescope.nvim",
     url = "https://github.com/nvim-telescope/telescope.nvim"
   },
+  ["tender.vim"] = {
+    loaded = true,
+    path = "/home/greg/.local/share/nvim/site/pack/packer/start/tender.vim",
+    url = "https://github.com/jacoborus/tender.vim"
+  },
   ["toggleterm.nvim"] = {
     loaded = true,
     path = "/home/greg/.local/share/nvim/site/pack/packer/start/toggleterm.nvim",
     url = "https://github.com/akinsho/toggleterm.nvim"
+  },
+  ["tokyonight.nvim"] = {
+    loaded = true,
+    path = "/home/greg/.local/share/nvim/site/pack/packer/start/tokyonight.nvim",
+    url = "https://github.com/folke/tokyonight.nvim"
   },
   ["vim-airline"] = {
     loaded = true,

@@ -18,4 +18,5 @@ let g:airline_left_sep = ""
 let g:airline_left_alt_sep = ""
 let g:airline_right_sep = ""
 let g:airline_right_alt_sep = ""
-let g:airline_theme = "base16_gruvbox_dark_soft" "-> :AirlineTheme <theme>
+" let g:airline_theme = "base16_gruvbox_dark_soft" "-> :AirlineTheme <theme>
+let g:airline_theme = "deus" "-> :AirlineTheme <theme>

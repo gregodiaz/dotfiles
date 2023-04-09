@@ -1,8 +1,9 @@
 -- Theme
 -- vim.opt.guifont = { "OperatorMono Nerd Font", "h14" }
 
-vim.o.background = "dark"
-vim.cmd([[colorscheme gruvbox]])
+-- vim.o.background = "dark"
+-- vim.cmd([[colorscheme tender]])
+vim.cmd([[colorscheme tokyonight-night]])
 
 -- Tmux
 vim.g.tmux_navigator_no_mappings = 1

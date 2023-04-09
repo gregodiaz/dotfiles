@@ -7,7 +7,7 @@ sudo apt install font-manager
 # Oh my zsh
 cp .oh-my-zsh .zshrc .p10k.zsh in ~/
 #### create a profile:
-Custom font: Operator Mono Medium Nerd Font 14 
+<!-- Custom font: Operator Mono Medium Nerd Font 14 --> 
 Pallete:
 ```bash
 #282828 #CC241D #6FA128 #D79921 #7197E7 #A77AC4 #689D6A #F2F2F2
@@ -31,30 +31,20 @@ sudo apt install compton nitrogen dmenu autorandr
 cp awesome in ~/.config
 run
 ```bash
-xrandr --output DP-1 --mode 1366x768
+xrandr xrandr --output HDMI-1 --mode 1366x768 --right-of eDP-1
 ```
 ```bash
-xrandr --output DP-1 --left-of eDP-1
+autorandr -s main
 ```
 ```bash
-autorandr -s greg
+autorandr -d main
 ```
 ```bash
-autorandr -d greg
-```
-```bash
-autorandr greg
+autorandr main
 ```
 
-# vim
+# nvim
 cp nvim in ~/.config
-run in vim
-```bash
-:PlugInstall
-```
-```bash
-:CocInstall coc-prettier
-```
 
 # qmk
 cp xxx in ~/qmk_firmware/keyboards/crkbd/keymaps

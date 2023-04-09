@@ -106,6 +106,8 @@ source $ZSH/oh-my-zsh.sh
 
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
+#
+# sudo -n chmod a+rw /sys/class/backlight/intel_backlight/brightness
 
 # Set personal aliases, overriding those provided by oh-my-zsh libs,
 # plugins, and themes. Aliases can be placed here, though oh-my-zsh
@@ -134,6 +136,36 @@ alias grp="git remote prune "
 alias gsl="git log --graph --abbrev-commit --decorate --date=relative --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- <%an>%C(auto)%d%Creset' --all"
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
+alias .c="~/.config"
+alias .ca="neovide --multigrid --maximized ~/.config/awesome"
+
+alias d="docker"
+alias dp="docker ps"
+alias dps="docker ps --format 'table {{.Image}}\t{{ .Ports }}'"
+alias dc="docker-compose"
+alias dcu="docker-compose up"
+alias dcd="docker-compose down"
+
+alias i="~/ichi-guy/"
+alias iv="~/ichi-guy/; vi"
+
+alias w="~/dchess/backend-setup/game-ws"
+alias c="~/dchess/game-client"
+alias s="~/dchess/backend-setup/game-server"
+alias m="~/dchess/backend-setup/match-service"
+alias t="~/dchess/backend-setup/tournaments"
+alias b="~/dchess/backend-setup"
+alias bu="~/dchess/backend-setup; git pull; ./up.sh"
+
+alias auris="bluetoothctl connect 1C:52:16:E4:50:0F"
+alias aurisd="bluetoothctl disconnect 1C:52:16:E4:50:0F"
+alias headphones="bluetoothctl connect F5:F4:1F:3A:4C:0E"
+alias headphonesd="bluetoothctl disconnect F5:F4:1F:3A:4C:0E"
+
+alias wifi='f() { nmcli device wifi connect $1 password $2};f'
+alias wifid='f() { nmcli c down $1};f'
+alias wifilist='nmcli device wifi list'
+ 
 
 # Generated for envman. Do not edit.
 [ -s "$HOME/.config/envman/load.sh" ] && source "$HOME/.config/envman/load.sh"
@@ -148,4 +180,10 @@ export NVM_DIR="$HOME/.nvm"
 source ~/powerlevel10k/powerlevel10k.zsh-theme
 
 # If you come from bash you might have to change your $PATH.
-export PATH=$HOME/bin:/usr/local/bin:$HOME/.config/composer/vendor/bin:$PATH
+export PATH=$HOME/bin:/usr/local/bin:$HOME/.config/composer/vendor/bin:$PATH:$$HOME/usr/bin:$PATH:$$HOME/.local/bin:$PATH
+
+export VISUAL=/usr/local/bin/neovide
+export EDITOR="$VISUAL"
+
+export GH_API_KEY=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
+export OPENAI_API_KEY=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

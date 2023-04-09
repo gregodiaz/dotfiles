@@ -6,8 +6,10 @@ end
 
 -- Leader
 map('n', '<Leader>w', ':w<CR>')
+map('n', '<Leader>W', ':w<CR>')
 map('n', '<Leader>v', ':noh<CR>')
 map('n', '<Leader>q', ':q', { silent = false })
+map('n', '<Leader>Q', ':q', { silent = false })
 map('n', '<Leader>x', ':x', { silent = false })
 map('n', '<Leader>e', ':e ', { silent = false })
 map('n', '<Leader>/', ':%s/', { silent = false })
@@ -18,7 +20,7 @@ map('n', '<leader>af', ':Sail ', { silent = false })
 
 map({ 'n', 'v' }, '<Leader>c', ':Commentary<CR>')
 
-map('n', '<Leader><tab>', 'gd')
+-- map('n', '<Leader><tab>', 'gd')
 map('n', 'n', 'nzzzv')
 map('n', 'N', 'Nzzzv')
 map('v', '>', '>gv')
@@ -40,7 +42,7 @@ map('n', '<C-y>', ':bdelete<CR>')
 
 -- Replacement
 -- Normal mode
-map('n', ';;', 'A;<Esc>')
+map('n', '\';', 'A;<Esc>')
 map('n', '""', '<Esc>bi"<Esc>ea"')
 
 -- Insert mode
@@ -59,6 +61,7 @@ map('i', '<F6>', '=>')
 map('i', '<F5>', '->')
 map('i', '<F4>', ']')
 map('i', '<F3>', '[]<Esc>i')
+map('i', '<tab>', '<tab>')
 
 -- Visual mode
 map('v', '<F11>', 'c()<Esc>PvF(l')

@@ -2,6 +2,32 @@ require("nvim-lsp-installer").setup {
     automatic_installation = true
 }
 
+local lsp_status = require 'lsp-status'
+lsp_status.config {
+    select_symbol = function(cursor_pos, symbol)
+        if symbol.valueRange then
+            local value_range = {
+                ["start"] = {
+                    character = 0,
+                    line = vim.fn.byte2line(symbol.valueRange[1])
+                },
+                ["end"] = {
+                    character = 0,
+                    line = vim.fn.byte2line(symbol.valueRange[2])
+                }
+            }
+
+            return require("lsp-status.util").in_range(cursor_pos, value_range)
+        end
+    end,
+    error_symbol = '❌ ',
+    warning_symbol = '⚠️ ',
+    info_symbol = 'ℹ️ ',
+    status_symbol = '🛈 ',
+    show_status = true,
+    error_window_height = 15,
+}
+
 -- Mappings.
 -- See `:help vim.diagnostic.*` for documentation on any of the below functions
 local opts = { noremap = true, silent = true }
@@ -20,11 +46,11 @@ local on_attach = function(client, bufnr)
     -- Mappings.
     -- See `:help vim.lsp.*` for documentation on any of the below functions
     local bufopts = { noremap = true, silent = true, buffer = bufnr }
-    vim.keymap.set('n', 'vf', vim.lsp.buf.declaration, bufopts)
-    vim.keymap.set('n', 'vd', vim.lsp.buf.definition, bufopts)
+    -- vim.keymap.set('n', 'gf', vim.lsp.buf.declaration, bufopts)
+    vim.keymap.set('n', 'gd', vim.lsp.buf.definition, bufopts)
     vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, bufopts)
-    vim.keymap.set({'n', 'i'}, '<F1>', vim.lsp.buf.hover, bufopts)
-    vim.keymap.set({'n', 'i'}, '<F2>', vim.lsp.buf.signature_help, bufopts)
+    vim.keymap.set({ 'n', 'i' }, '<F1>', vim.lsp.buf.hover, bufopts)
+    vim.keymap.set({ 'n', 'i' }, '<F2>', vim.lsp.buf.signature_help, bufopts)
     vim.keymap.set('n', '<Leader>wa', vim.lsp.buf.add_workspace_folder, bufopts)
     vim.keymap.set('n', '<Leader>wr', vim.lsp.buf.remove_workspace_folder, bufopts)
     vim.keymap.set('n', '<Leader>wl', function()
@@ -43,7 +69,6 @@ local lsp_flags = {
 }
 
 local lspconfig = require("lspconfig")
-
 
 lspconfig.intelephense.setup {
     on_attach = on_attach,
@@ -65,7 +90,8 @@ lspconfig.emmet_ls.setup {
     flags = lsp_flags,
 }
 
-lspconfig.sumneko_lua.setup {
+-- lspconfig.sumneko_lua.setup {
+lspconfig.lua_ls.setup {
     on_attach = on_attach,
     flags = lsp_flags,
     settings = {
@@ -89,3 +115,18 @@ lspconfig.sumneko_lua.setup {
         },
     },
 }
+
+lspconfig.cssls.setup {
+    on_attach = on_attach,
+    flags = lsp_flags,
+}
+
+lspconfig.cssmodules_ls.setup {
+    -- provide your on_attach to bind keymappings
+    on_attach = custom_on_attach,
+    -- optionally
+    init_options = {
+        camelCase = 'dashes',
+    },
+}
+

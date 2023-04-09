@@ -19,163 +19,218 @@ local rep = extras.rep
 local postfix = require("luasnip.extras.postfix").postfix
 
 ls.config.set_config({
-  -- This tells LuaSnip to remember to keep around the last snippet.
-  -- You can jump back into even if you move outside of the selection
-  history = true,
+    -- This tells LuaSnip to remember to keep around the last snippet.
+    -- You can jump back into even if you move outside of the selection
+    history = true,
 
-  -- This one is cool cause if you have dynamic snippets, it updatesas you type!
-  updateevents = "TextChanged,TextChangedI",
+    -- This one is cool cause if you have dynamic snippets, it updatesas you type!
+    updateevents = "TextChanged,TextChangedI",
 
-  -- Autosnippets:
-  enable_autosnippets = true,
+    -- Autosnippets:
+    enable_autosnippets = true,
 
-  ext_opts = {
-    [types.choiceNode] = {
-      active = {
-        virt_text = { { "<- Choice", "Error" } },
-      },
-    },
-  },
+    -- ext_opts = {
+    --     [types.choiceNode] = {
+    --         active = {
+    --             virt_text = { { "<- Choice", "Error" } },
+    --         },
+    --     },
+    -- },
 })
 
 -- <c-k> is my expansion key
 -- this will expand the current item or jump to the next item within the snippet.
 vim.keymap.set({ "i", "s" }, "<c-k>", function()
-  if ls.expand_or_jumpable() then
-    ls.expand_or_jump()
-  end
+    if ls.expand_or_jumpable() then
+        ls.expand_or_jump()
+    end
 end, { silent = true })
 
 -- <c-j> is my jump backwards key.
 -- this always moves to the previous item within the snippet
 vim.keymap.set({ "i", "s" }, "<c-j>", function()
-  if ls.jumpable(-1) then
-    ls.jump(-1)
-  end
+    if ls.jumpable(-1) then
+        ls.jump(-1)
+    end
 end, { silent = true })
 
 -- <c-l> is selecting within a list of options.
 -- This is useful for choice nodes (introduced in the forthcoming episode 2)
 vim.keymap.set("i", "<c-l>", function()
-  if ls.choice_active() then
-    ls.change_choice(1)
-  end
+    if ls.choice_active() then
+        ls.change_choice(1)
+    end
 end)
 
 ls.add_snippets("all", {
-  s("imp", {
-    t("import "), i(1, ""), t(" from \'"), c(2, { t("./"), t("../") }), i(3, ""), t("\';"),
-  }),
+    s("imp", {
+        t("import "), i(1, ""), t(" from \'"), c(2, { t("./"), t("../"), t("") }), i(3, ""), t("\'"),
+    }),
 
-  s("cn", {
-    t("className=\'"), i(1, "container"), t("\' ")
-  }),
+    s("cn", {
+        t("className={"),
+        c(1, {
+			i(1,"s."),
+            sn(nil, {
+                t("`${"),
+                i(1, "s."),
+                t("} `"),
+			}),
+        }),
+		t("} ")
+    }),
 
-  s("cl", {
-    t("console.log("), i(1, "var"), t(")")
-  }),
+    s("cl", {
+        t("console.log("), i(1, "var"), t(")")
+    }),
 
-  s("cle", {
-    t("console.log(\'"),
-    f(function(args)
-      return args[1][1]:gsub("^%u", string.lower)
-    end, { 1 }),
-    t(": \',"), i(1, "var"), t(")")
-  })
+    s("cle", {
+        t("console.log(\'"),
+        f(function(args)
+            return args[1][1]:gsub("^%u", string.lower)
+        end, { 1 }),
+        t(": \', "), i(1, "var"), t(")")
+    }),
+
+    s("ue", {
+        t({ "useEffect(()=>{", "" }),
+        i(1, "var"),
+        t({ "", "}, [" }),
+        i(2, ""),
+        t("])")
+    }),
+
+    s(
+        "us",
+        fmt("const [{}, set{upper}{lower}] = useState<{}>({})", {
+            i(1, "state"),
+            i(2, "Type"),
+            i(3, ""),
+            upper = l(l._1:sub(1,1):upper(), 1),
+            lower = l(l._1:sub(2,-1), 1),
+        })
+    ),
+
+    s("af", {
+        t("("),
+        i(1, ""),
+        t(") => {"),
+        i(2, ""),
+        t("}"),
+    }),
+
+	s("c", {
+        t("const "),
+	}),
+
+	s("cc", {
+        t("construct(",""),
+        c(1, {
+            t("public"),
+            t("protected"),
+            t("private"),
+        }),
+		t(" "),
+        i(2, "var"),
+		t(": "),
+        i(3, "type"),
+		t("", "){", "}",""),
+	}),
+
 })
 
 ls.add_snippets("php", {
-  -- Route
-  s("ro", {
-    t("Route::"),
-    c(1, {
-      t("get"),
-      t("post"),
-      t("put"),
-      t("delete"),
+    -- Route
+    s("ro", {
+        t("Route::"),
+        c(1, {
+            t("get"),
+            t("post"),
+            t("put"),
+            t("delete"),
+        }),
+        t("('"),
+        i(2, "uri"),
+        t("',"),
+        c(3, {
+            sn(nil, {
+                t("["),
+                i(1, "Controller"),
+                t("::class, \'"),
+                i(2, "method"),
+                t("\']);"),
+            }),
+            sn(nil, {
+                t({ 'function(){', '' }),
+                i(1, ''),
+                t({ '', '});' }),
+            }),
+        })
     }),
-    t("('"),
-    i(2, "uri"),
-    t("',"),
-    c(3, {
-      sn(nil, {
-        t("["),
-        i(1, "Controller"),
-        t("::class, \'"),
-        i(2, "method"),
-        t("\']);"),
-      }),
-      sn(nil, {
-        t({ 'function(){', '' }),
-        i(1, ''),
-        t({ '', '});' }),
-      }),
-    })
-  }),
 
-  -- function
-  s("fu", {
-    c(1, {
-      t("public"),
-      t("protected"),
-      t("private"),
-    }),
-    t(" function "),
-    i(2, "name"),
-    t("("),
-    i(3, "Type"),
-    t(" $"),
-    f(function(args)
-      return args[1][1]:gsub("^%u", string.lower)
-    end, { 3 }),
-    t({ ")", "{", "    " }),
-    i(0),
-    t({ "", "}", "" }),
-  }),
-
-  -- __construct
-  s("cc", {
-    c(1, { t("public"), t("private"), t("protected") }),
-    t({ " function __construct(" }),
-    c(2, {
-      sn(nil, {
-        t("$"),
-        i(1, 'var'),
-        t({ ")", "{", "    " }),
-        i(2, ''),
-        t({ "", "}" }),
-      }),
-      sn(nil, {
-        i(1, "Type"),
+    -- function
+    s("fu", {
+        c(1, {
+            t("public"),
+            t("protected"),
+            t("private"),
+        }),
+        t(" function "),
+        i(2, "name"),
+        t("("),
+        i(3, "Type"),
         t(" $"),
         f(function(args)
-          return args[1][1]:gsub("^%u", string.lower)
-        end, { 1 }),
-        t({ ",", ") {", "}", "" }),
-      }),
+            return args[1][1]:gsub("^%u", string.lower)
+        end, { 3 }),
+        t({ ")", "{", "    " }),
+        i(0),
+        t({ "", "}", "" }),
     }),
-    i(3),
-    t({ "){", "" }),
-    i(0),
-    t({ "", "}" }),
-  }
-  ),
 
-  -- php docs
-  s("v", {
-    t({ "/**", " * " }),
-    i(1, 'Description...'),
-    t({ "", " *", " * @param " }),
-    i(2, 'type'),
-    t({ " $" }),
-    i(3, 'var'),
-    t({ "    ", " * @return " }),
-    i(4, 'type'),
-    t({ " $" }),
-    i(5, 'var'),
-    t({ "    ", " */" }),
-  }
-  ),
+    -- __construct
+    s("cc", {
+        c(1, { t("public"), t("private"), t("protected") }),
+        t({ " function __construct(" }),
+        c(2, {
+            sn(nil, {
+                t("$"),
+                i(1, 'var'),
+                t({ ")", "{", "    " }),
+                i(2, ''),
+                t({ "", "}" }),
+            }),
+            sn(nil, {
+                i(1, "Type"),
+                t(" $"),
+                f(function(args)
+                    return args[1][1]:gsub("^%u", string.lower)
+                end, { 1 }),
+                t({ ",", ") {", "}", "" }),
+            }),
+        }),
+        i(3),
+        t({ "){", "" }),
+        i(0),
+        t({ "", "}" }),
+    }
+    ),
+
+    -- php docs
+    s("v", {
+        t({ "/**", " * " }),
+        i(1, 'Description...'),
+        t({ "", " *", " * @param " }),
+        i(2, 'type'),
+        t({ " $" }),
+        i(3, 'var'),
+        t({ "    ", " * @return " }),
+        i(4, 'type'),
+        t({ " $" }),
+        i(5, 'var'),
+        t({ "    ", " */" }),
+    }
+    ),
 })
 
 
