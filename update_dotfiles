@@ -1,0 +1,164 @@
+#!/bin/bash
+
+# ANSI colors
+GREEN='\e[32m'
+RED='\e[31m'
+BLUE='\e[34m'
+RESET='\e[0m'
+
+options=("awesome" "dactyl" "nvim" "zsh" "p10k")
+selected=("${options[@]}")
+current=0
+
+handle_cp() {
+	name=$1
+	source=$2
+	target=$3
+
+	echo -e "Executing action for ${BLUE}${name}${RESET}"
+
+	if sudo cp -r $source $target; then
+		echo -e "${GREEN}${name} updated.${RESET}"
+	else
+		echo -e "${RED}Error updating ${name}.${RESET}"
+	fi
+
+	echo
+}
+
+handle_actions() {
+	clear
+	for option in "${selected[@]}"; do
+		case $option in
+			"${options[0]}")
+				handle_cp "${options[0]}" ~/.config/awesome/* ./awesome
+				;;
+			"${options[1]}")
+				handle_cp "${options[1]}" ~/qmk_firmware/keyboards/handwired/dactyl_promicro/* ./dactyl
+				;;
+			"${options[2]}")
+				sudo rm -rf ./nvim > /dev/null 2>&1
+				handle_cp "${options[2]}" ~/.config/nvim .
+				;;
+			"${options[3]}")
+				handle_cp "${options[3]}" ~/.zshrc .
+				;;
+			"${options[4]}")
+				handle_cp "${options[4]}" ~/.p10k.zsh .
+				;;
+		esac
+	done
+}
+
+# top menu
+show_top_menu() {
+	echo -e "Menu:"
+	echo -e "-----------------------------"
+	printf "${BLUE}%-4s\t ${RESET}%-15s\n" "j" "Move down"
+	printf "${BLUE}%-4s\t ${RESET}%-15s\n" "k" "Move up"
+	printf "${BLUE}%-4s\t ${RESET}%-15s\n" "<Enter>" "Toggle select"
+	printf "${BLUE}%-4s\t ${RESET}%-15s\n" "a" "Select all"
+	printf "${BLUE}%-4s\t ${RESET}%-15s\n" "d" "Deselect all"
+	printf "${BLUE}%-4s\t ${RESET}%-15s\n" "q" "Exit"
+	printf "${BLUE}%-4s\t ${RESET}%-15s\n" "c" "Continue"
+	echo -e "-----------------------------"
+	echo
+}
+
+# bottom menu
+show_bottom_menu() {
+	echo -e "Select the elements you want to update:"
+	for i in "${!options[@]}"; do
+		if [ $i -eq $current ]; then
+			if [ -z "${selected[$i]}" ]; then
+				echo -e "${RED} ${options[$i]}${RESET}${BLUE} <-${RESET}"
+			else
+				echo -e "${GREEN} ${options[$i]}${RESET}${BLUE} <-${RESET}"
+			fi
+		else
+			if [ -z "${selected[$i]}" ]; then
+				echo -e "${RED} ${options[$i]}${RESET}"
+			else
+				echo -e "${GREEN} ${options[$i]}${RESET}"
+			fi
+		fi
+	done
+}
+
+# main loop
+while true; do
+	clear
+	show_top_menu
+	show_bottom_menu
+	read -n 1 -s choice
+	case $choice in
+		j) ((current++));; # move down
+		J) ((current++));; # move down
+		k) ((current--));; # move up
+		K) ((current--));; # move up
+		a) selected=("${options[@]}");;  # select all
+		A) selected=("${options[@]}");;  # select all
+		d) selected=();;  # deselect all
+		D) selected=();;  # deselect all
+		c)
+			echo
+			if [ ${#selected[@]} -eq 0 ]; then
+				echo "Operation canceled:"
+				echo -e "${RED}You didn't select any option.${RESET}"
+				exit 0
+			else
+				# show selected options
+				echo -e "\nYou selected the following options: ${BLUE}${selected[@]}${RESET}"
+				echo -e "Do you really want to continue?"
+				echo -e "[${GREEN}y$RESET/${RED}n$RESET/${BLUE}<any key>$RESET to go back]"
+				read -p " > " confirmation
+				case $confirmation in
+					[Yy])
+						echo
+						handle_actions
+						exit 0
+						;;
+					[Nn])
+						echo
+						echo "Operation canceled:"
+						echo -e "${RED}Actions not executed.${RESET}"
+						exit 0
+						;;
+					*)
+						echo
+						echo -e "${RED}Invalid option, try again.${RESET}"
+						;;
+				esac
+			fi
+			;;
+		"")
+			# toggle select on enter
+			if [ -z "${selected[$current]}" ]; then
+				selected[$current]=${options[$current]}
+			else
+				selected[$current]=""
+			fi
+			;;
+		q)
+			clear
+			echo
+			echo "Operation canceled:"
+			echo -e "${RED}You quit the program.${RESET}"
+			exit 0
+			;;
+		Q)
+			clear
+			echo
+			echo "Operation canceled:"
+			echo -e "${RED}You quit the program.${RESET}"
+			exit 0
+			;;
+	esac
+
+	# make sure the current index is in the right range
+	if [ $current -lt 0 ]; then
+		current=$(( ${#options[@]} - 1 ))
+	elif [ $current -ge ${#options[@]} ]; then
+		current=0
+	fi
+done
