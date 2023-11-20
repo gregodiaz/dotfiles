@@ -18,7 +18,7 @@ export ZSH="$HOME/.oh-my-zsh"
 # ZSH_THEME="agnoster"
 # ZSH_THEME="powerlevel10k/powerlevel10k"
 # 'p10k configure' to reset de configure
-SOLARIZED_THEME="dark"
+# SOLARIZED_THEME="dark"
 
 # + -  * /
 bindkey -s "^[Ok" "+"
@@ -45,7 +45,7 @@ bindkey -s "^[Oo" "/"
 # zstyle ':omz:update' mode reminder  # just remind me to update when it's time
 
 # Uncomment the following line to change how often to auto-update (in days).
-# zstyle ':omz:update' frequency 13
+zstyle ':omz:update' frequency 14
 
 # Uncomment the following line if pasting URLs and other text is messed up.
 # DISABLE_MAGIC_FUNCTIONS="true"
@@ -63,7 +63,7 @@ bindkey -s "^[Oo" "/"
 # You can also set it to another string to have that shown instead of the default red dots.
 # e.g. COMPLETION_WAITING_DOTS="%F{yellow}waiting...%f"
 # Caution: this setting can cause issues with multiline prompts in zsh < 5.7.1 (see #5765)
-# COMPLETION_WAITING_DOTS="true"
+COMPLETION_WAITING_DOTS="true"
 
 # Uncomment the following line if you want to disable marking untracked files
 # under VCS as dirty. This makes repository status check for large repositories
@@ -89,6 +89,7 @@ bindkey -s "^[Oo" "/"
 plugins=(git)
 
 source $ZSH/oh-my-zsh.sh
+source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
 
 # User configuration
 
@@ -116,11 +117,17 @@ source $ZSH/oh-my-zsh.sh
 #
 # Example aliases
 alias cl="clear"
-# alias vi="nvim"
-alias vi="neovide --multigrid --maximized"
+alias vi="nvim"
+alias svi="sudoedit"
+alias tm="tmux"
+alias tx="tmuxifier"
+alias txd="tmuxifier load-session dchess"
+alias img="kitty +kitten icat"
 alias pa="php artisan"
 alias wpp="whatsdesk"
 alias sail="[ -f sail ] && sh sail || sh vendor/bin/sail"
+alias sf="fdfind --type f --hidden --exclude .git | fzf-tmux -p --reverse | xargs nvim"
+
 
 alias gcmm="git commit -m"
 alias gcmma="git commit -am"
@@ -137,7 +144,8 @@ alias gsl="git log --graph --abbrev-commit --decorate --date=relative --format=f
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 alias .c="~/.config"
-alias .ca="neovide --multigrid --maximized ~/.config/awesome"
+alias .ca="~/.config/awesome; vi rc.lua"
+alias .cn="~/.config/nvim; vi"
 
 alias d="docker"
 alias dp="docker ps"
@@ -146,11 +154,15 @@ alias dc="docker-compose"
 alias dcu="docker-compose up"
 alias dcd="docker-compose down"
 
-alias i="~/ichi-guy/"
-alias iv="~/ichi-guy/; vi"
+# alias i="~/ichi-guy/"
+# alias iv="~/ichi-guy/; vi"
 
 alias w="~/dchess/backend-setup/game-ws"
-alias c="~/dchess/game-client"
+alias c="~/dchess/masters-dchess-client"
+alias oc="~/dchess/old/game-client-new"
+alias oc2="~/dchess/old/game-client"
+alias ol2="~/dchess/old/LandingGameStatic-legacy"
+alias ol="~/dchess/old/landing-page"
 alias s="~/dchess/backend-setup/game-server"
 alias m="~/dchess/backend-setup/match-service"
 alias t="~/dchess/backend-setup/tournaments"
@@ -161,11 +173,14 @@ alias auris="bluetoothctl connect 1C:52:16:E4:50:0F"
 alias aurisd="bluetoothctl disconnect 1C:52:16:E4:50:0F"
 alias headphones="bluetoothctl connect F5:F4:1F:3A:4C:0E"
 alias headphonesd="bluetoothctl disconnect F5:F4:1F:3A:4C:0E"
+alias speakers="bluetoothctl connect C0:9C:5F:99:6E:48"
+alias speakersd="bluetoothctl disconnect C0:9C:5F:99:6E:48"
 
 alias wifi='f() { nmcli device wifi connect $1 password $2};f'
 alias wifid='f() { nmcli c down $1};f'
-alias wifilist='nmcli device wifi list'
- 
+alias wifil='nmcli device wifi list'
+
+alias md='f() { mkdir $1; cd $1};f'
 
 # Generated for envman. Do not edit.
 [ -s "$HOME/.config/envman/load.sh" ] && source "$HOME/.config/envman/load.sh"
@@ -180,10 +195,44 @@ export NVM_DIR="$HOME/.nvm"
 source ~/powerlevel10k/powerlevel10k.zsh-theme
 
 # If you come from bash you might have to change your $PATH.
-export PATH=$HOME/bin:/usr/local/bin:$HOME/.config/composer/vendor/bin:$PATH:$$HOME/usr/bin:$PATH:$$HOME/.local/bin:$PATH
+export PATH="$HOME/bin:$PATH"
+export PATH="$HOME/usr/bin:$PATH"
+export PATH="$HOME/usr/local/bin:$PATH"
+export PATH="$HOME/.local/bin:$PATH"
+export PATH="$HOME/.config/composer/vendor/bin:$PATH"
+export PATH="$HOME/repos/tmuxifier/bin:$PATH"
+export PATH="$HOME/.zsh/zsh-autosuggestions/zsh-autosuggestions.plugin.zsh:$PATH"
+export PATH="$HOME/scripts:$PATH"
 
-export VISUAL=/usr/local/bin/neovide
-export EDITOR="$VISUAL"
+eval "$(tmuxifier init -)"
 
-export GH_API_KEY=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
-export OPENAI_API_KEY=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
+# export VISUAL=/usr/local/bin/neovide
+# export EDITOR="$VISUAL"
+export EDITOR='nvim'
+
+# >>> conda initialize >>>
+# !! Contents within this block are managed by 'conda init' !!
+__conda_setup="$('/home/greg/anaconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
+if [ $? -eq 0 ]; then
+    eval "$__conda_setup"
+else
+    if [ -f "/home/greg/anaconda3/etc/profile.d/conda.sh" ]; then
+        . "/home/greg/anaconda3/etc/profile.d/conda.sh"
+    else
+        export PATH="/home/greg/anaconda3/bin:$PATH"
+    fi
+fi
+unset __conda_setup
+
+# export TERM=screen-256color
+export XDG_CONFIG_HOME="$HOME/.config"
+
+bindkey '^k' autosuggest-accept
+
+# pnpm
+export PNPM_HOME="/home/greg/.local/share/pnpm"
+case ":$PATH:" in
+  *":$PNPM_HOME:"*) ;;
+  *) export PATH="$PNPM_HOME:$PATH" ;;
+esac
+# pnpm end
