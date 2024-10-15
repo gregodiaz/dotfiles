@@ -20,16 +20,18 @@ end
 
 -- project files
 tmap("<leader>pf", "project_files")
-tmap("<leader>ps", "grep_string")
-tmap("<leader>pw", "grep_word")
+-- tmap("<leader>ps", "grep_string")
+-- tmap("<leader>pw", "grep_word")
+tmap("<leader><leader>/", "grep_string")
+tmap("<leader>/", "grep_word")
 tmap("<leader>pr", "file_browser_relative")
 tmap("<leader>pb", "buffers")
 
 -- git
 -- rest in ../../plugins/fugitive.lua { t = git, d = diff, f = fetch, b = branches, c = commits, s = status }
-tmap("<leader>gib", "branches")
-tmap("<leader>gic", "git_commits")
-tmap("<leader>gis", "git_status")
+tmap("<leader>gb", "branches")
+tmap("<leader>gc", "git_commits")
+tmap("<leader>gs", "git_status")
 
 -- nvim
 tmap("<leader>fnc", "find_nvim_config")

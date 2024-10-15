@@ -52,8 +52,8 @@ return {
 			"while_statement",
 		}
 
-		map("n", "<A-i>", function() sts.filtered_jump(jumps, false) end, opts)
-		map("n", "<A-u>", function() sts.filtered_jump(jumps, true) end, opts)
+		map("n", "<A-s-k>", function() sts.filtered_jump(jumps, false) end, opts)
+		map("n", "<A-s-j>", function() sts.filtered_jump(jumps, true) end, opts)
 
 		map("n", "<A-k>", function() vim.cmd [[STSSwapUpNormal]] end, opts)
 		map("n", "<A-j>", function() vim.cmd [[STSSwapDownNormal]] end, opts)

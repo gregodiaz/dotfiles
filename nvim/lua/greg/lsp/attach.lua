@@ -1,29 +1,25 @@
 local telescope_mapper = require "greg.telescope.mappings"
 
-local filetype_attach = setmetatable({}, {
-	__index = function()
-		return function()
-		end
-	end,
-})
-
 return function(client, bufnr)
-	local filetype = vim.api.nvim_buf_get_option(0, "filetype")
-  local bufopts = { noremap = true, silent = true, buffer = bufnr }
+	vim.keymap.set("n", "gd", vim.lsp.buf.definition, { buffer = 0, desc = "LSP go to definition" })
+	vim.keymap.set("n", "gr", vim.lsp.buf.implementation, { buffer = 0, desc = "LSP go to implementation" })
 
-	vim.keymap.set("n", "gd", vim.lsp.buf.definition, bufopts)
-	vim.keymap.set("n", "gr", vim.lsp.buf.implementation, bufopts)
+	vim.keymap.set("n", "<tab>", vim.lsp.buf.hover, { buffer = 0, desc = "LSP Help information of symbol under the cursor" })
+	vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, { buffer = 0, desc = "LSP Rename symbol under cursor" })
+	vim.keymap.set("n", "<leader><leader>rl", ":LspRestart<cr>", { noremap = true, desc = "LSP Restart Server" })
+	vim.keymap.set({ "n", "v" }, "<leader>vca", vim.lsp.buf.code_action, { buffer = 0, desc = "LSP Code actions" })
+	-- vim.keymap.set("i", "<c-h>", vim.lsp.buf.signature_help, { buffer = 0, desc = "LSP Signature help" })
 
-	vim.keymap.set("n", "<tab>", vim.lsp.buf.hover, bufopts)
-	vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, bufopts)
-	vim.keymap.set("n", "<leader><leader>rl", ":LspRestart<cr>", { noremap = true })
-	vim.keymap.set({ "n", "v" }, "<leader>vca", vim.lsp.buf.code_action, {})
+	vim.keymap.set("n", "<leader>f", function()
+		return vim.lsp.buf.format { async = true }
+	end, { buffer = 0, desc = "LSP format file" })
 
-	telescope_mapper("gt", "lsp_references", nil, true)
-	telescope_mapper("<leader>pd", "lsp_document_symbols", nil, true)
+	telescope_mapper("gt", "lsp_references", { buffer = true, desc = "LSP References of symbol on cursor" })
+	telescope_mapper("<leader>pd", "lsp_document_symbols", { buffer = true, desc = "LSP document symbols" })
 
 	vim.bo.omnifunc = "v:lua.vim.lsp.omnifunc"
 
-	-- Attach any filetype specific options to the client
-	filetype_attach[filetype](client, bufnr)
+	-- if client.server_capabilities.inlayHintProvider then
+	-- 	vim.lsp.inlay_hint(bufnr, true)
+	-- end
 end

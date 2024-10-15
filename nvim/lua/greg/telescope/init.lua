@@ -63,7 +63,8 @@ M.find_nvim_plugin = function()
 end
 
 function M.grep_string()
-	vim.ui.input({ prompt = "Grep for > " }, function(input)
+	-- vim.ui.input({ prompt = "Grep for > " }, function(input)
+	vim.ui.input({ prompt = " % " }, function(input)
 		if input == nil then
 			return
 		end
@@ -76,7 +77,8 @@ function M.grep_word()
 end
 
 function M.find_symbol()
-	vim.ui.input({ prompt = "Symbol for > " }, function(input)
+	-- vim.ui.input({ prompt = "Symbol for > " }, function(input)
+	vim.ui.input({ prompt = " " }, function(input)
 		if input == nil then
 			return
 		end

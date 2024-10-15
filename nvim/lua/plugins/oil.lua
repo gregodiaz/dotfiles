@@ -1,11 +1,14 @@
 return {
 	'stevearc/oil.nvim',
 	dependencies = { "kyazdani42/nvim-web-devicons" },
-	keys = { { "-", ":Oil<CR>" } },
+	keys = { { "-", ":Oil --float<CR>" } },
 	opts = {
 		skip_confirm_for_simple_edits = true,
 		view_options = {
 			show_hidden = true,
+		},
+		float = {
+			padding = 3,
 		},
 		cleanup_delay_ms = 500,
 		-- Keymaps in oil buffer. Can be any value that `vim.keymap.set` accepts OR a table of keymap

@@ -1,6 +1,7 @@
 return {
 	"lukas-reineke/indent-blankline.nvim",
 	dependencies = { "nvim-treesitter/nvim-treesitter" },
+	enabled = false,
 	config = function()
 		local ibl = require "ibl"
 		local hooks = require "ibl.hooks"

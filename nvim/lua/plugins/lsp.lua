@@ -1,9 +1,18 @@
 return {
 	"neovim/nvim-lspconfig",
 	dependencies = {
-		"williamboman/mason.nvim",
+		-- "jose-elias-alvarez/none-ls.nvim",
+		"nvimtools/none-ls.nvim",
 		"williamboman/mason-lspconfig.nvim",
 		"WhoIsSethDaniel/mason-tool-installer.nvim",
+		{
+			"williamboman/mason.nvim",
+			opts = {
+				ui = {
+					border = "rounded",
+				},
+			},
+		},
 		{
 			"lvimuser/lsp-inlayhints.nvim",
 			config = function()
@@ -31,6 +40,7 @@ return {
 					blend = 0,
 				},
 				sources = {
+					-- ["none-ls"] = {
 					["null-ls"] = {
 						ignore = true,
 					},
@@ -40,7 +50,6 @@ return {
 		"folke/neodev.nvim"
 	},
 	event = "VeryLazy",
-	config = function()
-		require "greg.lsp"
-	end,
+	main = "greg.lsp",
+	opts = {},
 }

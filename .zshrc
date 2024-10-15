@@ -116,36 +116,46 @@ source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
 # For a full list of active aliases, run `alias`.
 #
 # Example aliases
+alias cleandisk="baobab"
 alias cl="clear"
 alias vi="nvim"
 alias svi="sudoedit"
+alias deb="sudo dpkg -i"
+alias debrem="sudo dpkg -r"
+alias update-chrome="sudo dpkg -i ~/Downloads/google-chrome-stable_current_amd64.deb"
+
 alias tm="tmux"
+alias tml="tmux ls"
+alias tma="tmux a -t "
+alias tmk="tmux kill-session -t "
 alias tx="tmuxifier"
+alias txl="tmuxifier load-session"
 alias txd="tmuxifier load-session dchess"
-alias img="kitty +kitten icat"
-alias pa="php artisan"
-alias wpp="whatsdesk"
-alias sail="[ -f sail ] && sh sail || sh vendor/bin/sail"
-alias sf="fdfind --type f --hidden --exclude .git | fzf-tmux -p --reverse | xargs nvim"
+alias txp="tmuxifier load-session portfolio"
+alias txc="tmuxifier load-session catlas"
+alias txi="tmuxifier load-session ichi-guy"
+# alias pa="php artisan"
+# alias sail="[ -f sail ] && sh sail || sh vendor/bin/sail"
+# alias sf="fdfind --type f --hidden --exclude .git | fzf-tmux -p --reverse | xargs nvim"
 
-
-alias gcmm="git commit -m"
-alias gcmma="git commit -am"
-alias gcam="git commit --amend"
-alias gcko="git checkout"
-alias gckom="git checkout main"
-alias gpsh="git push"
-alias gpll="git pull"
-# alias gpllr="git pull $(pwd | awk -F/ '{print $NF}') $(git_current_branch)"
-alias gsth="git stash"
-alias gshw="git show"
-alias grp="git remote prune "
+# alias glr="git pull $(pwd | awk -F/ '{print $NF}') $(git_current_branch)"
+alias gt="git worktree"
+alias gk="git checkout"
+alias gkm="git checkout main"
+alias gh="git stash"
+alias gs="git status"
+alias gfa='f() { git ${2:---git-dir=.git} fetch --prune ${1:-gitlab} "*:*"};f'
+alias gw="git show"
+alias grpo="git remote prune origin"
 alias gsl="git log --graph --abbrev-commit --decorate --date=relative --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- <%an>%C(auto)%d%Creset' --all"
+
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 alias .c="~/.config"
 alias .ca="~/.config/awesome; vi rc.lua"
 alias .cn="~/.config/nvim; vi"
+alias .cz="vi ~/.zshrc"
+alias D="~/Downloads"
 
 alias d="docker"
 alias dp="docker ps"
@@ -156,18 +166,32 @@ alias dcd="docker-compose down"
 
 # alias i="~/ichi-guy/"
 # alias iv="~/ichi-guy/; vi"
+alias co="~/code/"
+alias cot="~/code/ts"
+alias cop="~/code/php"
+alias coy="~/code/py"
+alias coa="~/code/astro"
+alias p="~/code/astro/portfolio"
 
-alias w="~/dchess/backend-setup/game-ws"
-alias c="~/dchess/masters-dchess-client"
-alias oc="~/dchess/old/game-client-new"
-alias oc2="~/dchess/old/game-client"
-alias ol2="~/dchess/old/LandingGameStatic-legacy"
-alias ol="~/dchess/old/landing-page"
-alias s="~/dchess/backend-setup/game-server"
-alias m="~/dchess/backend-setup/match-service"
-alias t="~/dchess/backend-setup/tournaments"
-alias b="~/dchess/backend-setup"
-alias bu="~/dchess/backend-setup; git pull; ./up.sh"
+# Random Devs
+alias r="~/rd/"
+alias rb="~/rd/bank-lead/"
+
+# DChess
+alias c="~/dchess/client"
+alias w="~/dchess/server/game-chess"
+alias a="~/dchess/server/auth-system"
+alias aws="~/dchess/aws"
+alias oc="~/dchess/.old/game-client-new"
+alias oc2="~/dchess/.old/game-client"
+alias ol2="~/dchess/.old/LandingGameStatic-legacy"
+alias ol="~/dchess/.old/landing-page"
+alias ob="~/dchess/.old/backend-setup"
+alias obu="~/dchess/.old/backend-setup; git pull; ./up.sh"
+alias ow="~/dchess/.old/backend-setup/game-ws"
+alias os="~/dchess/.old/backend-setup/game-server"
+alias om="~/dchess/.old/backend-setup/match-service"
+alias ot="~/dchess/.old/backend-setup/tournaments"
 
 alias auris="bluetoothctl connect 1C:52:16:E4:50:0F"
 alias aurisd="bluetoothctl disconnect 1C:52:16:E4:50:0F"
@@ -183,8 +207,7 @@ alias wifil='nmcli device wifi list'
 alias md='f() { mkdir $1; cd $1};f'
 
 # Generated for envman. Do not edit.
-[ -s "$HOME/.config/envman/load.sh" ] && source "$HOME/.config/envman/load.sh"
-
+# [ -s "$HOME/.config/envman/load.sh" ] && source "$HOME/.config/envman/load.sh"
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
@@ -192,40 +215,36 @@ export NVM_DIR="$HOME/.nvm"
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
-source ~/powerlevel10k/powerlevel10k.zsh-theme
+source ~/repos/powerlevel10k/powerlevel10k.zsh-theme
 
 # If you come from bash you might have to change your $PATH.
-export PATH="$HOME/bin:$PATH"
-export PATH="$HOME/usr/bin:$PATH"
-export PATH="$HOME/usr/local/bin:$PATH"
-export PATH="$HOME/.local/bin:$PATH"
-export PATH="$HOME/.config/composer/vendor/bin:$PATH"
-export PATH="$HOME/repos/tmuxifier/bin:$PATH"
-export PATH="$HOME/.zsh/zsh-autosuggestions/zsh-autosuggestions.plugin.zsh:$PATH"
-export PATH="$HOME/scripts:$PATH"
+export PATH=$PATH:$HOME/bin
+export PATH=$PATH:$HOME/usr/bin
+export PATH=$PATH:$HOME/usr/local/bin
+export PATH=$PATH:$HOME/.local/bin
+export PATH=$PATH:$HOME/.config/composer/vendor/bin
+export PATH=$PATH:$HOME/repos/tmuxifier/bin
+export PATH=$PATH:$HOME/.zsh/zsh-autosuggestions/zsh-autosuggestions.plugin.zsh
+export PATH=$PATH:$HOME/scripts
+export PATH=$PATH:$HOME/appImages/
+export PATH=$PATH:/usr/pgadmin4/bin
+
+export EDITOR='nvim'
+export XDG_CONFIG_HOME="$HOME/.config"
+export GIT_SSH_COMMAND='ssh -i ~/.ssh/pc-ubuntu'
+export PRETTIERD_LOCAL_PRETTIER_ONLY=true
+export FZF_DEFAULT_OPTS="--reverse --preview 'cat {}' --prompt='  ' --pointer=' ▶'" # --pointer=' →'
+
+export HISTFILE=~/.zsh_history
+export HISTSIZE=10000
+export SAVESIZE=10000
 
 eval "$(tmuxifier init -)"
 
-# export VISUAL=/usr/local/bin/neovide
-# export EDITOR="$VISUAL"
-export EDITOR='nvim'
-
-# >>> conda initialize >>>
-# !! Contents within this block are managed by 'conda init' !!
-__conda_setup="$('/home/greg/anaconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
-if [ $? -eq 0 ]; then
-    eval "$__conda_setup"
-else
-    if [ -f "/home/greg/anaconda3/etc/profile.d/conda.sh" ]; then
-        . "/home/greg/anaconda3/etc/profile.d/conda.sh"
-    else
-        export PATH="/home/greg/anaconda3/bin:$PATH"
-    fi
-fi
-unset __conda_setup
-
-# export TERM=screen-256color
-export XDG_CONFIG_HOME="$HOME/.config"
+# eval "$(ssh-agent -s)"
+# for key in ~/.ssh/*; do
+#     [ -f "$key" ] && [[ "$key" != *.pub ]] && ssh-add "$key" < /dev/null
+# done
 
 bindkey '^k' autosuggest-accept
 
@@ -235,4 +254,3 @@ case ":$PATH:" in
   *":$PNPM_HOME:"*) ;;
   *) export PATH="$PNPM_HOME:$PATH" ;;
 esac
-# pnpm end

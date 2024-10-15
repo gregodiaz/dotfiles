@@ -6,7 +6,8 @@ M.save_and_exec = function()
 		vim = "source %",
 	}
 
-	local ft = vim.api.nvim_buf_get_option(0, "filetype")
+	-- local ft = vim.api.nvim_buf_get_option(0, "filetype")
+	local ft = vim.api.nvim_get_option_value("filetype", { buffer = 0 })
 	local command = source_commands[ft]
 	if command == nil then
 		vim.notify("This type cant not be sourced", vim.log.levels.ERROR, { title = "greg" })

@@ -1,14 +1,14 @@
 return {
 	"adalessa/laravel.nvim",
-	enabled = false,
+	-- enabled = false,
 	dependencies = {
 		"rcarriga/nvim-notify",
 		"nvim-telescope/telescope.nvim",
 	},
 	cmd = { "Sail", "Artisan", "Composer", "Npm", "Laravel" },
 	keys = {
-		{ "<leader>la", ":Laravel artisan<cr>" },
-		{ "<leader>lr", ":Laravel routes<cr>" },
+		{ "<leader>aa", ":Laravel artisan<cr>" },
+		{ "<leader>ar", ":Laravel routes<cr>" },
 	},
 	config = function()
 		vim.g.laravel_log_level = "debug"

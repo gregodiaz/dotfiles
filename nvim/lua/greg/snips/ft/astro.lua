@@ -7,3 +7,17 @@ local d = ls.dynamic_node
 local f = ls.function_node
 local i = ls.insert_node
 local fmt = require("luasnip.extras.fmt").fmt
+
+local M = {}
+
+M['--'] = fmt([[
+---
+
+{}
+
+---
+]], {
+	i(1, ""),
+})
+
+return M

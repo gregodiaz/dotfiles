@@ -2,5 +2,6 @@
     "diagnostics.globals": [
         "vim",
         "dump"
-    ]
+    ],
+    "completion.autoRequire": false
 }
